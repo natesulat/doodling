@@ -31,7 +31,7 @@ function mygrep(p, d, q) {
         // I do not have Node 10+, so this is how I did it
         if (stat.isDirectory()) {
             let dir = fs.readdirSync(name);
-            mygrep(name + '/', dir);
+            mygrep(name + '/', dir, q);
         } else {
             let text = fs.readFileSync(name, enc),
                 lines = text.split('\n');

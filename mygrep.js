@@ -33,17 +33,25 @@ function mygrep(p, d, q) {
             let dir = fs.readdirSync(name);
             mygrep(name + '/', dir, q);
         } else {
-            let text = fs.readFileSync(name, enc),
-                lines = text.split('\n');
-
-            lines.forEach(function (line, index) {
-                if (line.indexOf(q) > -1) {
-                    index++;
-                    console.log(name + ":" + index + "\t" + line);
-                }
-            })
+            printMatchingLines(name, q);
         }
         i++;
     }
 
+}
+
+// Separation of concerns!
+// In fairness, the <find> and <print> actions could semantically be considered
+// different, but when I started separating it out my brain started leaking out
+// of my ears so I had to stop
+function printMatchingLines(file, query) {
+    var text = fs.readFileSync(file, enc),
+        lines = text.split('\n');
+
+    lines.forEach(function (line, index) {
+        if (line.indexOf(query) > -1) {
+            index++;
+            console.log(name + ":" + index + "\t" + line);
+        }
+    });
 }

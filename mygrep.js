@@ -51,7 +51,7 @@ function printMatchingLines(file, query) {
     lines.forEach(function (line, index) {
         if (line.indexOf(query) > -1) {
             index++;
-            console.log(name + ":" + index + "\t" + line);
+            console.log(file + ":" + index + "\t" + line);
         }
     });
 }
